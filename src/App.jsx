@@ -12,6 +12,7 @@ import PhotoGallerypage from "./Pages/PhotoGallerypage";
 import { Routes, Route } from "react-router-dom";
 import HomeRoutes from "./Components/HomeComponent";
 
+
 class App extends Component {
   render() {
     return (
@@ -24,8 +25,10 @@ class App extends Component {
               <Route path="/AboutMepage" element={<AboutMepage />} />
               <Route path="/PhotoGallerypage" element={<PhotoGallerypage />} />
             </Routes>
+            
           </Container>
         </div>
+        
         <footer className="App-footer">
           <Footer />
         </footer>

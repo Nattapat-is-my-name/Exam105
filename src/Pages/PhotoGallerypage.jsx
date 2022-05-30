@@ -5,47 +5,180 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  Button,
   CardGroup,
   CardSubtitle,
   Popover,
   PopoverBody,
   PopoverHeader,
+  ModalHeader,
+  ModalFooter,
+  Container,
+  Button,
+  Modal,
 } from "reactstrap";
+import { ModalBody } from "reactstrap";
 
 export default class PhotoGallerypage extends Component {
-  render() {
-    const imageClick = () => {
-      alert(" short description!!!");
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      title: "",
+      message: "",
+      score: "",
+      id: "",
     };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  hanndleSubmit = (e) => {
+    e.preventDefault();
+    const title = this.state.title;
+    const message = this.state.message;
+    const score = this.state.score;
+    const id = new Date();
+    const data = {
+      title,
+      message,
+      score,
+      id,
+    };
+    console.log(data);
+  };
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  }
+  render() {
     return (
-      <CardGroup >
-        <Card style={{margin :10}}>
-          <img
-            src="https://picsum.photos/318/180"
-            onClick={() => imageClick()}
-            
-          />
-        </Card>
-        <Card style={{margin :10}}>
-        <img
-            src="https://picsum.photos/318/180"
-            onClick={() => imageClick()}
-          />
-        </Card>
-        <Card style={{margin :10}}>
-        <img
-            src="https://picsum.photos/318/180"
-            onClick={() => imageClick()}
-          />
-        </Card>
-        <Card style={{margin :10}}>
-        <img
-            src="https://picsum.photos/318/180"
-            onClick={() => imageClick()}
-          />
-        </Card>
-      </CardGroup>
+      <div>
+        <div style={{ color: "white" }}>
+          <h1> {this.state.title}</h1>
+          <h1> {this.state.message}</h1>
+          <h1> {this.state.score}</h1>
+        </div>
+
+        <Modal isOpen={this.state.modal}>
+          <Container style={{ padding: 10 }}>
+            <form
+              style={{ padding: 10, paddingTop: 20 }}
+              onSubmit={this.hanndleSubmit}
+            >
+              <div class="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  value={this.state.title}
+                  class="form-control"
+                  placeholder="Enter Name"
+                  onChange={(e) => this.setState({ title: e.target.value })}
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Comment</label>
+                <input
+                  type="text"
+                  value={this.state.message}
+                  class="form-control"
+                  placeholder="Need To Say Something?"
+                  onChange={(e) => this.setState({ message: e.target.value })}
+                  required
+                />
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inlineCheckbox2"
+                  value="option2"
+                  onChange={() => this.setState({ score: 1 })}
+                />
+                <label class="form-check-label" for="inlineCheckbox2">
+                  1
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inlineCheckbox2"
+                  value="option2"
+                  onChange={() => this.setState({ score: 2 })}
+                />
+                <label class="form-check-label" for="inlineCheckbox2">
+                  2
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inlineCheckbox2"
+                  value="option2"
+                  onChange={() => this.setState({ score: 3 })}
+                />
+                <label class="form-check-label" for="inlineCheckbox2">
+                  3
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inlineCheckbox2"
+                  value="option2"
+                  onChange={() => this.setState({ score: 4 })}
+                />
+                <label class="form-check-label" for="inlineCheckbox2">
+                  4
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inlineCheckbox2"
+                  value="option2"
+                  onChange={() => this.setState({ score: 5 })}
+                />
+                <label class="form-check-label" for="inlineCheckbox2">
+                  5
+                </label>
+              </div>
+
+              <ModalFooter>
+                <Button type="submit" color="primary" onClick={this.toggle}>
+                  {" "}
+                  Submit{" "}
+                </Button>{" "}
+                <Button color="secondary" onClick={this.toggle}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </form>
+          </Container>
+        </Modal>
+
+        <CardGroup>
+          <Card style={{ margin: 10 }} onClick={this.toggle}>
+            <img src="https://picsum.photos/318/180" />
+          </Card>
+
+          <Card style={{ margin: 10 }} onClick={this.toggle}>
+            <img src="https://picsum.photos/318/180" />
+          </Card>
+          <Card style={{ margin: 10 }} onClick={this.toggle}>
+            <img src="https://picsum.photos/318/180" />
+          </Card>
+          <Card style={{ margin: 10 }} onClick={this.toggle}>
+            <img src="https://picsum.photos/318/180" />
+          </Card>
+        </CardGroup>
+      </div>
     );
   }
 }
