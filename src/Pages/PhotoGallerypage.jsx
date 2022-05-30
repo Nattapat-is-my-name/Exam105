@@ -1,24 +1,15 @@
-import { Component } from "react";
+import { Component, React } from "react";
 import {
   Card,
-  CardBody,
-  CardImg,
-  CardTitle,
-  CardText,
   CardGroup,
-  CardSubtitle,
-  Popover,
-  PopoverBody,
-  PopoverHeader,
-  ModalHeader,
   ModalFooter,
   Container,
   Button,
   Modal,
 } from "reactstrap";
-import { ModalBody } from "reactstrap";
-
-export default class PhotoGallerypage extends Component {
+import { connect } from "react-redux";
+import { addtodos } from "../Redux/createStore";
+class PhotoGallerypage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,20 +21,29 @@ export default class PhotoGallerypage extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.toggle2 = this.toggle2.bind(this);
   }
-
+  addtodos = () => {
+    this.props.addtodos({
+      title: this.state.title,
+      message: this.state.message,
+      score: this.state.score,
+      id: this.state.id,
+    });
+  };
   hanndleSubmit = (e) => {
     e.preventDefault();
     const title = this.state.title;
     const message = this.state.message;
     const score = this.state.score;
-    const id = new Date();
+    const id = new Date().toString;
     const data = {
       title,
       message,
       score,
       id,
     };
+    this.addtodos();
     console.log(data);
   };
 
@@ -52,15 +52,25 @@ export default class PhotoGallerypage extends Component {
       modal: !this.state.modal,
     });
   }
+  toggle2() {
+    this.setState({
+      modal2: !this.state.modal2,
+    });
+  }
   render() {
     return (
       <div>
-        <div style={{ color: "white" }}>
-          <h1> {this.state.title}</h1>
-          <h1> {this.state.message}</h1>
-          <h1> {this.state.score}</h1>
-        </div>
+        <Modal isOpen={this.state.modal2}>
+          <Container style={{ padding: 10 }} onClick={this.toggle2}>
+            <div style={{ padding: 10 }}>
+              <p>Your Name : {this.state.title}</p>
 
+              <p>Your Message : {this.state.message}</p>
+
+              <p>View Your Score : {this.state.score}</p>
+            </div>
+          </Container>
+        </Modal>
         <Modal isOpen={this.state.modal}>
           <Container style={{ padding: 10 }}>
             <form
@@ -94,7 +104,7 @@ export default class PhotoGallerypage extends Component {
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox2"
-                  value="option2"
+                  value={this.state.score}
                   onChange={() => this.setState({ score: 1 })}
                 />
                 <label class="form-check-label" for="inlineCheckbox2">
@@ -106,8 +116,8 @@ export default class PhotoGallerypage extends Component {
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox2"
-                  value="option2"
-                  onChange={() => this.setState({ score: 2 })}
+                  value={this.state.score}
+                  onChange={() => this.setState({ score: "2" })}
                 />
                 <label class="form-check-label" for="inlineCheckbox2">
                   2
@@ -118,8 +128,8 @@ export default class PhotoGallerypage extends Component {
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox2"
-                  value="option2"
-                  onChange={() => this.setState({ score: 3 })}
+                  value={this.state.score}
+                  onChange={() => this.setState({ score: "3" })}
                 />
                 <label class="form-check-label" for="inlineCheckbox2">
                   3
@@ -130,8 +140,8 @@ export default class PhotoGallerypage extends Component {
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox2"
-                  value="option2"
-                  onChange={() => this.setState({ score: 4 })}
+                  value={this.state.score}
+                  onChange={() => this.setState({ score: "4" })}
                 />
                 <label class="form-check-label" for="inlineCheckbox2">
                   4
@@ -142,8 +152,8 @@ export default class PhotoGallerypage extends Component {
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox2"
-                  value="option2"
-                  onChange={() => this.setState({ score: 5 })}
+                  value={this.state.score}
+                  onChange={() => this.setState({ score: "5" })}
                 />
                 <label class="form-check-label" for="inlineCheckbox2">
                   5
@@ -178,7 +188,13 @@ export default class PhotoGallerypage extends Component {
             <img src="https://picsum.photos/318/180" />
           </Card>
         </CardGroup>
+        <Button style={{ marginTop: 100 }} onClick={this.toggle2}>
+          Click Here To See Comment Detail
+        </Button>
       </div>
     );
   }
 }
+export default connect((state) => ({ ...state }), { addtodos })(
+  PhotoGallerypage
+);

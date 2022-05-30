@@ -13,6 +13,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeRoutes from "./Components/HomeComponent";
 
 
+
 class App extends Component {
   render() {
     return (
@@ -30,6 +31,7 @@ class App extends Component {
         </div>
         
         <footer className="App-footer">
+            
           <Footer />
         </footer>
       </div>
