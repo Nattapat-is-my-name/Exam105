@@ -10,12 +10,13 @@ import AboutMepage from "./Pages/AboutMepage";
 import { Container } from "reactstrap";
 import PhotoGallerypage from "./Pages/PhotoGallerypage";
 import { Routes, Route } from "react-router-dom";
+import HomeRoutes from "./Components/HomeComponent";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <HomeRoutes />
         <div className="App-header">
           <Container>
             <Routes>

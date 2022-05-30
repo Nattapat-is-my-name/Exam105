@@ -24,6 +24,7 @@ export default class PhotoGallerypage extends Component {
           <img
             src="https://picsum.photos/318/180"
             onClick={() => imageClick()}
+            
           />
         </Card>
         <Card style={{margin :10}}>

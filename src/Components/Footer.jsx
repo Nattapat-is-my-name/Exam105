@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-export default class Header extends Component {
+export default class Footer extends Component {
   render() {
     return (
         <footer className="page-footer font-small blue pt-4">
