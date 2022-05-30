@@ -1,0 +1,16 @@
+.pagee {
+  display: flex;
+  padding: 50px;
+  margin: 25px 50px 50px 50px;
+  justify-content: start;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  min-height: 80vh;
+}
+.row {
+  align-items: center;
+  justify-content: center;
+}
+.container{
+    color: black;
+}
