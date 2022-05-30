@@ -23,7 +23,7 @@ class AboutMepage extends Component {
                 class="font-weight-bold"
                 style={{ color: "black", marginTop: 10 }}
               >
-                Edogaru
+                Doge To the Moon
               </span>
               <span class="text-black-50">edogaru@mail.com.my</span>
               <span> </span>
